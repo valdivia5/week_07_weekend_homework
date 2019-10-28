@@ -1,28 +1,38 @@
 <template>
-<div class="">
+<div id="app">
+<h1>Studio Ghibli films</h1>
 
 </div>
 </template>
 
+
+
+
+
 <script>
 
+import filmList from "./components/filmList.vue"
 
 export default {
   name: 'app',
   data(){
     return {
-     filmData: ""
+     filmData: "",
+     films: []
     }
   },
-  mounted(){
+  methods: {
     fetch("https://ghibliapi.herokuapp.com/films")
     .then(dataFilm => dataFilm.json())
     .then(dataFilm => this.filmData = dataFilm.file)
+
   },
   components: {
-
+   "studio-ghibli-film-list": filmList
   }
 }
+
+// computed, mounted, differences in between them 
 </script>
 
 
@@ -34,11 +44,9 @@ export default {
 <!-- CSS -->
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  background-color: #6EC3F4;
+}
+#list-info {
+  display: flex;
 }
 </style>
